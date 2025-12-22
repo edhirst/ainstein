@@ -2,17 +2,17 @@ import tensorflow as tf
 
 tfk = tf.keras
 tfk.backend.set_floatx("float64")
+import random
 import signal
 import warnings
 from sys import exit
 
 import numpy as np
-
 import wandb
 from helper_functions import helper_functions
+from keras.saving import register_keras_serializable
 from losses.ball import TotalBallLoss
 from network import network_analysis, schedulers
-from keras.saving import register_keras_serializable
 
 
 @register_keras_serializable()
@@ -331,9 +331,11 @@ class BaseNetwork:
             )
             self.optimiser.learning_rate.assign(new_lr)
 
+            shuffled_batches = random.sample(batched_x_train, len(batched_x_train))
+
             # Initialise the the number of batches skipped due to inv. error
             skip_number = 0
-            for batch_idx, batch in enumerate(batched_x_train):
+            for batch_idx, batch in enumerate(shuffled_batches):
                 # Training loop
                 try:
                     loss_value, grads = self.grad(batch)
