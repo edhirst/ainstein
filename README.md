@@ -23,9 +23,6 @@ The package functionality is split according to: the model in `network/`, the lo
 A jupyter notebook `examine_output.ipynb` is provided which provides the testing functionality, and allows interactive visualisation of the trained models. Ensure the local filepath to the trained models is set correctly and follow internal instructions to set up the testing.   
 
 ## BibTeX Citation
-> [!NOTE]
->
-> Please cite this work if used by your project or otherwise redistributed! 
 ``` 
 @article{Hirst_2025,
 doi = {10.1088/3050-287X/ae1117},
